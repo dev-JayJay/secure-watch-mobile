@@ -16,7 +16,7 @@ import { Link } from "expo-router";
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Spacer width={100} height={40} children={undefined} />
+      <Spacer width={100} height={100} children={undefined} />
       <ThemeText title={true} style={styles.screen_header}>
         Welcome To Securewatch
       </ThemeText>
@@ -29,10 +29,11 @@ export default function App() {
       <Image source={WelComeImage} style={styles.welcome_image} />
       <Spacer width={100} height={50} children={undefined} />
       <Pressable>
-        <Link href="/info" style={styles.goto_button}>
+        <Link href="/info" className="text-3xl text-red-500">
           Get Started
         </Link>
       </Pressable>
+      <Text className="text-blue-800 text-5xl font-bold">Checking tailwind</Text>
       <StatusBar style="auto" />
     </SafeAreaView>
   );

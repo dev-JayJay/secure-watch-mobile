@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 
-export default interface spacerProps {
+export interface spacerProps {
     width : number;
     height: number;
     style?: object;
     children: ReactNode | undefined;
 }
 
-export default interface themeTextProps {
+export interface themeTextProps {
     style?: object;
     title?: boolean; 
     children: ReactNode;

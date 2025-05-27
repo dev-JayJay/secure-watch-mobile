@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, useColorScheme, Text } from 'react-native'
-import themeTextProps from '../../types/theme'
+import { themeTextProps } from '../../types/theme'
 import { applicationColors } from '../../constants/app-colors';
 
 const ThemeText = ({style, title = false, ...props}: themeTextProps) => {
