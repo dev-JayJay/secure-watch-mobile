@@ -9,7 +9,7 @@ const AuthLayout = () => {
       <StatusBar style="auto" />
       <Stack
         screenOptions={{
-          headerShown: true,
+          headerShown: false,
         }}
       ></Stack>
     </>
