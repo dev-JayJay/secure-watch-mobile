@@ -1,4 +1,5 @@
-import { StatusBar } from "expo-status-bar";
+import { Button, StatusBar } from "react-native";
+
 import React from "react";
 import {
   Image,
@@ -8,34 +9,23 @@ import {
   Text,
   View,
 } from "react-native";
-import ThemeText from "../components/theme/ThemeText";
+import ThemeView from "../components/theme/ThemeView";
 import Spacer from "../components/spacer";
 import WelComeImage from "../assets/images/first-page-image.png";
 import { Link } from "expo-router";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Spacer width={100} height={100} children={undefined} />
-      <ThemeText title={true} style={styles.screen_header}>
-        Welcome To Securewatch
-      </ThemeText>
-      <Spacer width={100} height={10} children={undefined} />
-      <ThemeText style={styles.text}>
-        Your trusted tool for reporting incidents and staying alert in your
-        community.
-      </ThemeText>
-      <Spacer width={100} height={50} children={undefined} />
-      <Image source={WelComeImage} style={styles.welcome_image} />
-      <Spacer width={100} height={50} children={undefined} />
-      <Pressable>
-        <Link href="/info" className="text-3xl text-red-500">
-          Get Started
-        </Link>
-      </Pressable>
-      <Text className="text-blue-800 text-5xl font-bold">Checking tailwind</Text>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <ThemeView safe={true} className="">
+      <ThemeView className="w-[90%] mx-auto mt-20">
+        <Text className="text-[#333333] font-bold text-[28px]">Welcome To Securewatch</Text>
+        <Text className="text-[#33333399] font-bold text-base mt-2">Your trusted tool for reporting incidents and staying alert in your community.</Text>
+      </ThemeView>
+        <Image source={WelComeImage} className="w-[93%] mx-auto mt-10" />
+        <Pressable className="w-[90%] mx-auto mt-10 bg-[#144E32] py-4 rounded-full">
+          <Link href='/info' className="text-center text-base text-white font-medium">Get Started</Link>
+        </Pressable>
+    </ThemeView>
   );
 }
 
