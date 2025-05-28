@@ -12,3 +12,8 @@ export interface themeTextProps {
     title?: boolean; 
     children: ReactNode;
 }
+export interface ThemeViewProps {
+    safe?: boolean;
+    className?: string | undefined;
+    children?: ReactNode;
+}
