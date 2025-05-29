@@ -12,19 +12,33 @@ import {
 import ThemeView from "../components/theme/ThemeView";
 import Spacer from "../components/spacer";
 import WelComeImage from "../assets/images/first-page-image.png";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 export default function App() {
+  const router = useRouter();
+  const goto = () => {
+    router.push("/info");
+  };
   return (
     <ThemeView safe={true} className="">
       <ThemeView className="w-[90%] mx-auto mt-20">
-        <Text className="text-[#333333] font-bold text-[28px]">Welcome To Securewatch</Text>
-        <Text className="text-[#33333399] font-bold text-base mt-2">Your trusted tool for reporting incidents and staying alert in your community.</Text>
+        <Text className="text-[#333333] font-bold text-[28px]">
+          Welcome To Securewatch
+        </Text>
+        <Text className="text-[#33333399] font-bold text-base mt-2">
+          Your trusted tool for reporting incidents and staying alert in your
+          community.
+        </Text>
       </ThemeView>
-        <Image source={WelComeImage} className="w-[93%] mx-auto mt-10" />
-        <Pressable className="w-[90%] mx-auto mt-10 bg-[#144E32] py-4 rounded-full">
-          <Link href='/info' className="text-center text-base text-white font-medium">Get Started</Link>
-        </Pressable>
+      <Image source={WelComeImage} className="w-[93%] mx-auto mt-10" />
+      <Pressable
+        onPress={goto}
+        className="w-[90%] mx-auto mt-10 bg-[#144E32] py-4 rounded-full"
+      >
+        <Text className="text-center text-base text-white font-medium">
+          Get Started
+        </Text>
+      </Pressable>
     </ThemeView>
   );
 }
