@@ -10,8 +10,23 @@ const AuthLayout = () => {
       <Stack
         screenOptions={{
           headerShown: false,
+          headerStyle: {
+            backgroundColor: "#144E32",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
         }}
-      ></Stack>
+      >
+        <Stack.Screen
+          name="verification"
+          options={{
+            headerShown: true,
+            title: "",
+          }}
+        />
+      </Stack>
     </>
   );
 };

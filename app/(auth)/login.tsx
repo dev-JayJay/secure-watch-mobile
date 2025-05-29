@@ -7,11 +7,15 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import ThemeView from "../../components/theme/ThemeView";
 import { login_choice } from "../../constants/auth-choice";
 
 const Login = () => {
+  const router = useRouter();
+  const goto = () => {
+    router.push("/verification");
+  };
   return (
     <ThemeView safe={true}>
       <ThemeView className="w-[90%] mx-auto mt-20">
@@ -53,13 +57,13 @@ const Login = () => {
           <TextInput className="w-[90%] py-4" />
         </ThemeView>
       </ThemeView>
-      <Pressable className="w-[90%] mx-auto mt-10 bg-[#144E32] py-4 rounded-full">
-        <Link
-          href="/info"
-          className="text-center text-base text-white font-medium"
-        >
+      <Pressable
+        onPress={goto}
+        className="w-[90%] mx-auto mt-10 bg-[#144E32] py-4 rounded-full"
+      >
+        <Text className="text-center text-base text-white font-medium">
           Sign Up
-        </Link>
+        </Text>
       </Pressable>
       <Text className="font-bold text-[14px] text-[#333333B8] text-center my-9">
         Have an Account?{" "}
