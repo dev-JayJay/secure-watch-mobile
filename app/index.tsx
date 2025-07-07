@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 import ThemeView from "../components/theme/ThemeView";
-import Spacer from "../components/spacer";
+// import Spacer from "../components/spacer";
 import WelComeImage from "../assets/images/first-page-image.png";
 import { Link, useRouter } from "expo-router";
 
