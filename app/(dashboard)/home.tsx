@@ -22,37 +22,39 @@ const Home = () => {
       <ThemeView className="w-11/12 mx-auto mb-5">
         <Location />
       </ThemeView>
-      <FlatList
-        data={incidents.slice(0, 5)}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => router.push(`/details/${item.id}`)}
-            className="my-1.5"
-          >
-            <IncedentComponent {...item} />
-          </TouchableOpacity>
-        )}
-        ListHeaderComponent={
-          <>
-            <ThemeView className="w-11/12 relative mx-auto h-[60vh] border border-[#00000057] rounded-2xl overflow-hidden">
-              <Image
-                source={mapImage}
-                className="w-full h-full"
-                resizeMode="cover"
+      <View className="flex-1">
+        <FlatList
+          data={incidents.slice(0, 5)}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => router.push(`/details/${item.id}`)}
+              className="my-1.5"
+            >
+              <IncedentComponent {...item} />
+            </TouchableOpacity>
+          )}
+          ListHeaderComponent={
+            <>
+              <ThemeView className="w-11/12 relative mx-auto h-[60vh] border border-[#00000057] rounded-2xl overflow-hidden">
+                <Image
+                  source={mapImage}
+                  className="w-full h-full"
+                  resizeMode="cover"
+                />
+              </ThemeView>
+              <TextInput
+                placeholder="What are you reporting Today?"
+                className="w-[94%] my-5 mx-auto px-7 py-5 text-xl border border-[#00000057] rounded-lg"
               />
-            </ThemeView>
-            <TextInput
-              placeholder="What are you reporting Today?"
-              className="w-[94%] my-5 mx-auto px-7 py-5 text-xl border border-[#00000057] rounded-lg"
-            />
-            <Text className="text-[#B0B0B0] text-lg font-bold px-4 my-4">
-              RECENT REPORTS
-            </Text>
-          </>
-        }
-        contentContainerStyle={{ paddingBottom: 10 }}
-      />
+              <Text className="text-[#B0B0B0] text-lg font-bold px-4 my-4">
+                RECENT REPORTS
+              </Text>
+            </>
+          }
+          contentContainerStyle={{ paddingBottom: 80 }}
+        />
+      </View>
     </ThemeView>
   );
 };

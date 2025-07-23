@@ -13,7 +13,7 @@ const Location = () => {
         <Text className="text-gray-600 text-sm font-semibold mb-1">
           Current Location
         </Text>
-        <ThemeView className="flex-row items-center space-x-2">
+        <ThemeView className="flex-row items-center gap-2">
           <FontAwesome6 name="location-dot" size={20} color="#1976D2" />
           <Text className="text-gray-900 text-lg font-medium">
             Lungi Avenue, Keffi

@@ -67,7 +67,7 @@ const IncidentDetails = () => {
             <Ionicons
               name="arrow-back"
               size={24}
-              color="#1f2937" // gray-800
+              color="#1f2937"
             />
           </TouchableOpacity>
           <Text className="text-xl font-semibold text-gray-800 dark:text-white">
@@ -86,7 +86,8 @@ const IncidentDetails = () => {
         {/* Status */}
         <View
           className={`self-start px-3 py-1 rounded-full mb-4 ${
-            statusColor[incident.status] || "bg-gray-200 text-gray-700"
+            statusColor[incident.status as keyof typeof statusColor] ||
+            "bg-gray-200 text-gray-700"
           }`}
         >
           <Text className="text-xs font-medium">{incident.status}</Text>
