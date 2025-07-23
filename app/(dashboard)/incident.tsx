@@ -19,8 +19,8 @@ import { IncedentComponent } from "../../components/spacer";
 const Incident = () => {
   const router = useRouter();
   return (
-    <ThemeView safe={true} className="bg-white/50 flex-1">
-      <ThemeView className="w-[90%] mx-auto mt-10 mb-5">
+    <ThemeView safe={true} className="flex-1 bg-white dark:bg-gray-900">
+      <ThemeView className="w-11/12 mx-auto mb-5">
         <Loaction />
       </ThemeView>
       <ThemeView className="flex-1 flex flex-col justify-between gap-2">

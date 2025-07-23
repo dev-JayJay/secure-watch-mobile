@@ -1,26 +1,32 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import { View, Platform } from "react-native";
 
 const _layout = () => {
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#144E32",
-        tabBarInactiveTintColor: "gray",
-        tabBarStyle: {
-          height: 70,
-          borderWidth: 1,
-          borderRadius: 50,
-          // borderColor: Colors.orange.default,
-          // borderTopColor: Colors.orange.default,
-          // backgroundColor: Colors.white.default,
-        },
+        tabBarInactiveTintColor: "#B0B0B0",
+        tabBarShowLabel: true,
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: "bold",
-          marginBottom: 10,
+          fontWeight: "600",
+          marginBottom: Platform.OS === "android" ? 6 : 0,
+        },
+        tabBarStyle: {
+          height: 70,
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          backgroundColor: "#ffffff",
+          position: "absolute",
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 10,
+          elevation: 20,
+          borderTopWidth: 0,
         },
       }}
     >
@@ -29,18 +35,13 @@ const _layout = () => {
         options={{
           headerShown: false,
           tabBarLabel: "Home",
-          tabBarIcon: ({ focused }) => {
-            const iconWeight = focused ? "bold" : "regular";
-            const iconColor = focused ? "#144E32" : "#B0B0B0";
-            return (
-              <FontAwesome
-                name="home"
-                size={25}
-                color={iconColor}
-                weight={iconWeight}
-              />
-            );
-          },
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="home"
+              size={22}
+              color={focused ? "#144E32" : "#B0B0B0"}
+            />
+          ),
         }}
       />
       <Tabs.Screen
@@ -48,36 +49,27 @@ const _layout = () => {
         options={{
           headerShown: false,
           tabBarLabel: "Incident",
-          tabBarIcon: ({ focused }) => {
-            const iconWeight = focused ? "bold" : "regular";
-            const iconColor = focused ? "#144E32" : "#B0B0B0";
-            return (
-              <FontAwesome
-                name="exclamation-circle"
-                size={25}
-                color={iconColor}
-                weight={iconWeight}
-              />
-            );
-          },
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="exclamation-circle"
+              size={22}
+              color={focused ? "#144E32" : "#B0B0B0"}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
+          headerShown: false,
           tabBarLabel: "Profile",
-          tabBarIcon: ({ focused }) => {
-            const iconWeight = focused ? "bold" : "regular";
-            const iconColor = focused ? "#144E32" : "#B0B0B0";
-            return (
-              <FontAwesome
-                name="user"
-                size={25}
-                color={iconColor}
-                weight={iconWeight}
-              />
-            );
-          },
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="user"
+              size={22}
+              color={focused ? "#144E32" : "#B0B0B0"}
+            />
+          ),
         }}
       />
     </Tabs>
@@ -85,5 +77,3 @@ const _layout = () => {
 };
 
 export default _layout;
-
-const styles = StyleSheet.create({});

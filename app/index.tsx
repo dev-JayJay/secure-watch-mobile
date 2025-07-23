@@ -1,77 +1,48 @@
-import { Button, StatusBar } from "react-native";
-
 import React from "react";
-import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import ThemeView from "../components/theme/ThemeView";
-// import Spacer from "../components/spacer";
 import WelComeImage from "../assets/images/first-page-image.png";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
-export default function App() {
+export default function WelcomeScreen() {
   const router = useRouter();
-  const goto = () => {
+
+  const handleGetStarted = () => {
     router.push("/info");
   };
+
   return (
-    <ThemeView safe={true} className="">
-      <ThemeView className="w-[90%] mx-auto mt-20">
-        <Text className="text-[#333333] font-bold text-[28px]">
-          Welcome To Securewatch
-        </Text>
-        <Text className="text-[#33333399] font-bold text-base mt-2">
-          Your trusted tool for reporting incidents and staying alert in your
-          community.
-        </Text>
-      </ThemeView>
-      <Image source={WelComeImage} className="w-[93%] mx-auto mt-10" />
-      <Pressable
-        onPress={goto}
-        className="w-[90%] mx-auto mt-10 bg-[#144E32] py-4 rounded-full"
-      >
-        <Text className="text-center text-base text-white font-medium">
-          Get Started
-        </Text>
-      </Pressable>
+    <ThemeView safe={true} className="flex-1 bg-white">
+      <View className="flex-1 justify-center items-center px-6 pt-20">
+        {/* Header */}
+        <View className="w-full max-w-xl">
+          <Text className="text-[#144E32] font-extrabold text-3xl mb-2">
+            Welcome To Securewatch
+          </Text>
+          <Text className="text-[#33333399] font-semibold text-base">
+            Your trusted tool for reporting incidents and staying alert in your
+            community.
+          </Text>
+        </View>
+
+        {/* Image */}
+        <Image
+          source={WelComeImage}
+          className="w-full max-w-xl h-60 mt-10"
+          resizeMode="contain"
+        />
+
+        {/* Get Started Button */}
+        <Pressable
+          onPress={handleGetStarted}
+          className="w-full max-w-xl bg-[#144E32] rounded-full py-5 mt-12 shadow-lg"
+          android_ripple={{ color: "#0f3a1d" }}
+        >
+          <Text className="text-center text-white text-lg font-semibold">
+            Get Started
+          </Text>
+        </Pressable>
+      </View>
     </ThemeView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-  },
-  screen_header: {
-    fontSize: 28,
-    fontWeight: 700,
-    paddingLeft: 10,
-  },
-  text: {
-    fontSize: 17,
-    fontWeight: 500,
-    paddingLeft: 10,
-  },
-  welcome_image: {
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-  goto_button: {
-    backgroundColor: "#144E32",
-    borderRadius: 100,
-    paddingTop: 15,
-    paddingBottom: 15,
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: 500,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-});

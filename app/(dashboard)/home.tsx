@@ -19,7 +19,7 @@ import { IncedentComponent } from "../../components/spacer";
 const Home = () => {
   return (
     <ThemeView safe={true} className="bg-white/50 flex-1">
-      <ThemeView className="w-[90%] mx-auto mt-10 mb-5">
+      <ThemeView className="w-11/12 mx-auto mb-5">
         <Location />
       </ThemeView>
       <FlatList
