@@ -1,16 +1,12 @@
 import {
-  Button,
   FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import ThemeView from "../../components/theme/ThemeView";
 import Loaction from "../../components/location";
 import { incidents } from "../../constants/auth-choice";
@@ -18,60 +14,61 @@ import { IncedentComponent } from "../../components/spacer";
 
 const Incident = () => {
   const router = useRouter();
+
   return (
     <ThemeView safe={true} className="flex-1 bg-white dark:bg-gray-900">
-      <ThemeView className="w-11/12 mx-auto mb-5">
+      {/* Location Header */}
+      <View className="w-11/12 mx-auto mt-4 mb-2">
         <Loaction />
-      </ThemeView>
-      <ThemeView className="flex-1 flex flex-col justify-between gap-2">
-        <FlatList
-          ListHeaderComponent={
-            <View>
-              <ThemeView className="w-11/12 mx-auto py-3 bg-[#144E32B8] rounded-lg shadow-md">
-                <Text className="text-white text-center text-xl font-bold">
-                  Report Incident
-                </Text>
-              </ThemeView>
-              <View className="w-11/12 mx-auto my-5 flex flex-row items-center gap-0  border border-[#00000057] overflow-hidden rounded-md ">
-                <TextInput
-                  placeholder="Search incident and location..."
-                  className="px-4 py-4 text-xl outline-none rounded-lg h-full"
-                />
-                <TouchableOpacity className="bg-[#144E32B8] px-4 py-4 h-full">
-                  <Text className="text-white text-sm font-bold">Search</Text>
-                </TouchableOpacity>
-              </View>
-              <Text className="text-[#B0B0B0] text-lg font-bold px-4 my-4">ALL INCIDENT REPORTS</Text>
+      </View>
+
+      {/* Main Content */}
+      <FlatList
+        ListHeaderComponent={
+          <View className="w-full px-4">
+            {/* Title */}
+            <View className="bg-[#144E32] rounded-xl py-4 shadow-md mb-5">
+              <Text className="text-white text-xl font-semibold text-center">
+                Report an Incident
+              </Text>
             </View>
-          }
-          data={incidents}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => router.push(`/details/${item.id}`)}
-              activeOpacity={0.7}
-              className="my-1.5"
-            >
-              <IncedentComponent {...item} />
-            </TouchableOpacity>
-          )}
-        />
-      </ThemeView>
+
+            {/* Search Bar */}
+            <View className="flex-row items-center border border-[#ccc] rounded-xl overflow-hidden mb-5">
+              <TextInput
+                placeholder="Search incident or location..."
+                className="flex-1 px-4 py-3 text-base text-gray-800"
+                placeholderTextColor="#888"
+              />
+              <TouchableOpacity className="bg-[#144E32] px-5 py-3 justify-center items-center">
+                <Text className="text-white font-semibold text-sm">Search</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Section Label */}
+            <Text className="text-[#555] text-lg font-semibold mb-3 px-1">
+              Recent Reports
+            </Text>
+          </View>
+        }
+        data={incidents}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => router.push(`/details/${item.id}`)}
+            activeOpacity={0.8}
+            className="px-2 pb-2"
+          >
+            <IncedentComponent {...item} />
+          </TouchableOpacity>
+        )}
+        contentContainerStyle={{
+          paddingBottom: 80,
+        }}
+        showsVerticalScrollIndicator={false}
+      />
     </ThemeView>
   );
 };
 
 export default Incident;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "green",
-    fontSize: 40,
-    fontWeight: 600,
-  },
-});
