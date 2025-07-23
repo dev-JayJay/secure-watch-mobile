@@ -1,114 +1,105 @@
 import React, { useState } from "react";
-import { Link, useRouter } from "expo-router";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import ThemeView from "../components/theme/ThemeView";
+
 import step1 from "../assets/images/step1.png";
 import step2 from "../assets/images/step2.png";
 import step3 from "../assets/images/step3.png";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import ThemeView from "../components/theme/ThemeView";
-import { Image, StyleSheet, Text } from "react-native";
-import thirdInfoImage from "../assets/images/thirdInfoImage.png";
-import secondInfoImage from "../assets/images/secondInfoImage.png";
 import firstInfoImage from "../assets/images/Wavy_Tech-27_Single-11 1.png";
+import secondInfoImage from "../assets/images/secondInfoImage.png";
+import thirdInfoImage from "../assets/images/thirdInfoImage.png";
 
 const Info = () => {
   const router = useRouter();
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState(0);
+
+  const data = [
+    {
+      title: "Report Incidents Easily",
+      description:
+        "Quickly log issues like theft, fire or suspicious activity — anonymously or with your name.",
+      image: firstInfoImage,
+      stepImage: step1,
+    },
+    {
+      title: "Stay Alert in Real Time",
+      description:
+        "Receive instant notifications about incidents happening nearby and stay safe.",
+      image: secondInfoImage,
+      stepImage: step2,
+    },
+    {
+      title: "Your Safety, Your Choice",
+      description:
+        "Choose to report anonymously, track local safety, and help protect others.",
+      image: thirdInfoImage,
+      stepImage: step3,
+    },
+  ];
+
   const handleNextStep = () => {
-    if (step == 2) {
-      router.push('/login');
+    if (step === data.length - 1) {
+      router.push("/login");
     } else {
-      setStep((prev) => prev + 1);
+      setStep(step + 1);
     }
   };
 
   const handlePreviousStep = () => {
-    if (step == 0) {
-      router.push('/');
+    if (step === 0) {
+      router.push("/");
     } else {
-      setStep((prev) => prev - 1);
+      setStep(step - 1);
     }
   };
+
   return (
-    <ThemeView safe={true} className="flex-1 bg-white">
-      {step === 0 && (
-        <ThemeView className="w-[95%] mx-auto mt-16 ">
-          <Text className="text-[#144E32] text-[18px] font-bold mt-10">
-            Report Incidents Easily
+    <ThemeView safe={true} className="flex-1 bg-gray-50">
+      <View className="flex-1 px-6 pt-16">
+        {/* Content Card */}
+        <View className="bg-white rounded-2xl shadow-lg p-6 flex-1 justify-center">
+          <Text className="text-[#144E32] text-2xl font-bold mb-4">
+            {data[step].title}
           </Text>
-          <Text className="text-[#33333399] font-medium mt-3">
-            Quickly log issues like theft, fire or suspicious activity
-            --anonymously or with your name.
-          </Text>
+          <Text className="text-gray-600 text-base mb-8">{data[step].description}</Text>
           <Image
-            source={firstInfoImage}
-            className="w-[95%] h-[55vh] mx-auto mt-10 "
+            source={data[step].image}
+            className="w-full h-[55vh] rounded-xl"
+            resizeMode="contain"
           />
-        </ThemeView>
-      )}
-      {step === 1 && (
-        <ThemeView className="w-[95%] mx-auto mt-16 ">
-          <Text className="text-[#144E32] text-[18px] font-bold mt-10">
-            Stay Alert in Real Time
-          </Text>
-          <Text className="text-[#33333399] font-medium mt-3">
-            Quickly log issues like theft, fire or suspicious activity
-            --anonymously or with your name.
-          </Text>
-          <Image
-            source={secondInfoImage}
-            className="w-[95%] h-[55vh] mx-auto mt-10 "
-          />
-        </ThemeView>
-      )}
-      {step === 2 && (
-        <ThemeView className="w-[95%] mx-auto mt-16 ">
-          <Text className="text-[#144E32] text-[18px] font-bold mt-10">
-            Your Safety, Your choice
-          </Text>
-          <Text className="text-[#33333399] font-medium mt-3">
-            Choose to report anonymously, track local safety, and help protect
-            others
-          </Text>
-          <Image
-            source={thirdInfoImage}
-            className="w-[95%] h-[55vh] mx-auto mt-10 "
-          />
-        </ThemeView>
-      )}
-      <ThemeView className="w-[90%] mx-auto mt-20 flex flex-row items-center justify-between">
-        {step === 0 && <Image source={step1} />}
-        {step === 1 && <Image source={step2} />}
-        {step === 2 && <Image source={step3} />}
-        <ThemeView className="flex flex-row gap-5">
-          <AntDesign
-            onPress={handlePreviousStep}
-            name="leftcircle"
-            size={37}
-            color="#144E322B"
-          />
-          <AntDesign
-            onPress={handleNextStep}
-            name="rightcircle"
-            size={37}
-            color="#144E32"
-          />
-        </ThemeView>
-      </ThemeView>
+        </View>
+
+        {/* Stepper and navigation */}
+        <View className="flex-row justify-between items-center mt-12 mb-6">
+          <Image source={data[step].stepImage} style={{ width: 80, height: 16 }} />
+
+          <View className="flex-row space-x-6">
+            <TouchableOpacity
+              onPress={handlePreviousStep}
+              className="p-2"
+              activeOpacity={0.7}
+            >
+              <AntDesign
+                name="leftcircle"
+                size={38}
+                color={step === 0 ? "#A3BFA1" : "#144E32"}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={handleNextStep}
+              className="p-2"
+              activeOpacity={0.7}
+            >
+              <AntDesign name="rightcircle" size={38} color="#144E32" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </ThemeView>
   );
 };
 
 export default Info;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "green",
-    fontSize: 40,
-    fontWeight: 600,
-  },
-});
