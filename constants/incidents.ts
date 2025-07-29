@@ -1,0 +1,42 @@
+export const incidents = [
+  {
+    id: "1",
+    type: "Accident",
+    location: "5th Avenue & Main St",
+    date: "2025-07-29 08:15",
+    severity: "High",
+    description: "Multi-vehicle collision causing traffic delays.",
+  },
+  {
+    id: "2",
+    type: "Flood",
+    location: "Riverside Park",
+    date: "2025-07-28 18:45",
+    severity: "Medium",
+    description: "River levels rising after heavy rains, moderate flooding expected.",
+  },
+  {
+    id: "3",
+    type: "Power Outage",
+    location: "Downtown Sector 3",
+    date: "2025-07-29 01:30",
+    severity: "High",
+    description: "Widespread blackout due to transformer failure.",
+  },
+  {
+    id: "4",
+    type: "Robbery",
+    location: "Market Street",
+    date: "2025-07-28 21:00",
+    severity: "Low",
+    description: "Reported break-in at local convenience store.",
+  },
+  {
+    id: "5",
+    type: "Accident",
+    location: "Highway 10, Exit 5",
+    date: "2025-07-29 07:50",
+    severity: "Medium",
+    description: "Single vehicle rollover, emergency services on site.",
+  },
+];
