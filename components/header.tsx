@@ -20,7 +20,7 @@ export default function ApplicationHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F5F9F7",
+    backgroundColor: "#D5E6DC",
     marginHorizontal: 8,
     padding: 16,
     borderRadius: 16,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 6,
 
-    elevation: 2, // Android soft shadow
+    elevation: 3, // Android soft shadow
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
