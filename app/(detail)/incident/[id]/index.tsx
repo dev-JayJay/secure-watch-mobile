@@ -19,6 +19,7 @@ import {
   Flag,
   ArrowLeft,
 } from "lucide-react-native";
+import MapScreen from "../../../../components/MapScreen";
 
 const PRIMARY = "#144E32";
 
@@ -148,6 +149,10 @@ export default function IncidentDetails() {
             <Text className="text-base text-gray-700 leading-relaxed">
               {incident.description}
             </Text>
+          </View>
+          <View className="h-62 overflow-hidden mb-10">
+            <Text className="text-xl font-medium mx-1">{incident.location}</Text>
+            <MapScreen />
           </View>
 
           {/* Reaction Section */}

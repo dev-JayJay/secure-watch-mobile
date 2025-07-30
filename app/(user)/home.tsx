@@ -26,7 +26,7 @@ export default function Home() {
         <View className="pt-4">
           <ApplicationHeader />
         </View>
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
           <View>
             <MapScreen />
           </View>
@@ -44,9 +44,6 @@ export default function Home() {
                 onPress={() => router.push(`/incident/${incident.id}`)}
               />
             ))}
-            <TouchableOpacity onPress={() => router.push("/home")}>
-              <Text className="border border-red-500 py-10">Goto </Text>
-            </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
