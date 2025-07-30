@@ -13,30 +13,34 @@ import Carousel from "react-native-reanimated-carousel";
 const { width } = Dimensions.get("window");
 
 export default function NewsContainer() {
-const data = [
-  {
-    title: "Breaking News",
-    image:
-      "https://images.pexels.com/photos/261949/pexels-photo-261949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
-  },
-  {
-    title: "World Update",
-    image:
-      "https://images.pexels.com/photos/3184436/pexels-photo-3184436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
-  },
-  {
-    title: "Tech Today",
-    image:
-      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
-  },
-];
-
+  const data = [
+    {
+      title: "Breaking News",
+      image:
+        "https://images.pexels.com/photos/261949/pexels-photo-261949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
+    },
+    {
+      title: "World Update",
+      image:
+        "https://images.pexels.com/photos/3184436/pexels-photo-3184436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
+    },
+    {
+      title: "Tech Today",
+      image:
+        "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
+    },
+  ];
 
   return (
     <View>
-      <Text className="text-xl text-[#144E32] font-medium px-4">
-        Latest News
-      </Text>
+      <View className="flex flex-row justify-between">
+        <Text className="text-xl text-[#144E32] font-medium px-4">
+          Nearby Alerts
+        </Text>
+        <Text className="text-base text-[#144E32] font-medium px-4 underline">
+          See more
+        </Text>
+      </View>
       <View>
         <Carousel
           width={width}

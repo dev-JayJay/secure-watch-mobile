@@ -4,7 +4,7 @@ import { Home, AlertTriangle, User } from "lucide-react-native";
 
 const tabs = [
   { name: "home", title: "Home", Icon: Home },
-  { name: "incident", title: "Incident", Icon: AlertTriangle },
+  { name: "incident/index", title: "Incident", Icon: AlertTriangle },
   { name: "profile", title: "Profile", Icon: User },
 ];
 

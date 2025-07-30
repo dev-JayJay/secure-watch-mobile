@@ -1,12 +1,9 @@
 import React from "react";
 import "../global.css";
-import { Slot, Stack } from "expo-router";
+import { Stack } from "expo-router";
 
 const RootLayout = () => {
-  return (
-    <Slot />
-  );
+  return <Stack screenOptions={{ headerShown: false }} />;
 };
 
 export default RootLayout;
-

@@ -41,9 +41,7 @@ export default function Home() {
                 location={incident.location}
                 date={incident.date}
                 severity={incident.severity}
-                onPress={() =>
-                  alert(`Tapped: ${incident.type} at ${incident.location}`)
-                }
+                onPress={() => router.push(`/incident/${incident.id}`)}
               />
             ))}
             <TouchableOpacity onPress={() => router.push("/home")}>
