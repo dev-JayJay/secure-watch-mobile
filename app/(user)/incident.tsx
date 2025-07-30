@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ApplicationHeader from "../../../components/header";
-import IncidentCard from "../../../components/IncidentCard";
-import { incidents } from "../../../constants/incidents";
+import ApplicationHeader from "../../components/header";
+import IncidentCard from "../../components/IncidentCard";
+import { incidents } from "../../constants/incidents";
 import { useRouter } from "expo-router";
-import NewsContainer from "../../../components/News";
+import NewsContainer from "../../components/News";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Incidents() {
@@ -20,7 +20,10 @@ export default function Incidents() {
         <View className="pt-4">
           <ApplicationHeader />
         </View>
-        <TouchableOpacity onPress={()=> router.push(`/incident/create`)} className="w-11/12 mx-auto bg-[#144E32] py-4 rounded-lg my-4">
+        <TouchableOpacity
+          onPress={() => router.push(`/incident/create`)}
+          className="w-11/12 mx-auto bg-[#144E32] py-4 rounded-lg my-4"
+        >
           <Text className="text-center text-white text-lg font-medium">
             Report Incident
           </Text>
@@ -28,8 +31,9 @@ export default function Incidents() {
         <View>
           <ScrollView
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 180 }}
+            contentContainerStyle={{ paddingBottom: 250 }}
           >
+            {/* news carosel section */}
             <NewsContainer />
             <View className="p-4">
               <Text className="text-xl text-[#144E32] font-medium py-4">
@@ -42,9 +46,7 @@ export default function Incidents() {
                   location={incident.location}
                   date={incident.date}
                   severity={incident.severity}
-                  onPress={() =>
-                    alert(`Tapped: ${incident.type} at ${incident.location}`)
-                  }
+                  onPress={() => router.push(`/incident/${incident.id}`)}
                 />
               ))}
             </View>

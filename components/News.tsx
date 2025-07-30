@@ -15,16 +15,19 @@ const { width } = Dimensions.get("window");
 export default function NewsContainer() {
   const data = [
     {
+      date: "July 7, 2025 08:15am",
       title: "Breaking News",
       image:
         "https://images.pexels.com/photos/261949/pexels-photo-261949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
     },
     {
+      date: "July 7, 2025 08:15am",
       title: "World Update",
       image:
         "https://images.pexels.com/photos/3184436/pexels-photo-3184436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
     },
     {
+      date: "July 7, 2025 08:15am",
       title: "Tech Today",
       image:
         "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400",
@@ -44,7 +47,7 @@ export default function NewsContainer() {
       <View>
         <Carousel
           width={width}
-          height={200}
+          height={210}
           autoPlay={true}
           data={data}
           scrollAnimationDuration={1100}
@@ -74,10 +77,11 @@ export default function NewsContainer() {
               />
               <View style={{ padding: 10 }}>
                 <Text
-                  style={{ fontSize: 16, fontWeight: "bold", color: "#144E32" }}
+                  style={{ fontSize: 20, fontWeight: "bold", color: "#144E32" }}
                 >
                   {item.title}
                 </Text>
+                <Text className="font-medium">{item.date}</Text>
               </View>
             </View>
           )}

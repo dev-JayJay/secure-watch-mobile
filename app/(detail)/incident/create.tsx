@@ -8,15 +8,20 @@ import {
   Alert,
   Platform,
 } from "react-native";
+import { ArrowLeft } from "lucide-react-native";
+import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
-import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 
 const INCIDENT_TYPES = ["Fire", "Flood", "Accident", "Theft", "Other"];
 const SEVERITY_LEVELS = ["Low", "Medium", "High"];
 const PRIMARY_COLOR = "#144E32";
 
 export default function CreateIncident() {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -42,13 +47,26 @@ export default function CreateIncident() {
   return (
     <LinearGradient colors={["#E6F0E9", "#F9FCF8"]} className="flex-1">
       <SafeAreaView className="flex-1">
-        <ScrollView contentContainerStyle={{ padding: 24 }}>
+        <TouchableOpacity
+          onPress={() => router.back()}
+          className="mb-6 bg-[#144E32] p-3 mx-6 rounded-full w-12 h-12 items-center justify-center"
+          activeOpacity={0.7}
+        >
+          <Text className="text-base text-white font-semibold">
+            <ArrowLeft color={"white"} />
+          </Text>
+        </TouchableOpacity>
+        <ScrollView
+          contentContainerStyle={{ paddingLeft: 24, paddingRight: 24 }}
+        >
           <Text className="text-3xl font-extrabold text-[#144E32] mb-8">
             Report an Incident
           </Text>
 
           {/* Title */}
-          <Text className="text-sm font-semibold text-gray-700 mb-2">Title *</Text>
+          <Text className="text-sm font-semibold text-gray-700 mb-2">
+            Title *
+          </Text>
           <TextInput
             value={title}
             onChangeText={setTitle}
@@ -58,7 +76,9 @@ export default function CreateIncident() {
           />
 
           {/* Location */}
-          <Text className="text-sm font-semibold text-gray-700 mb-2">Location *</Text>
+          <Text className="text-sm font-semibold text-gray-700 mb-2">
+            Location *
+          </Text>
           <TextInput
             value={location}
             onChangeText={setLocation}
@@ -112,7 +132,9 @@ export default function CreateIncident() {
           )}
 
           {/* Severity */}
-          <Text className="text-sm font-semibold text-gray-700 mb-2">Severity</Text>
+          <Text className="text-sm font-semibold text-gray-700 mb-2">
+            Severity
+          </Text>
           <View className="flex-row mb-10">
             {SEVERITY_LEVELS.map((level) => (
               <TouchableOpacity
@@ -137,7 +159,9 @@ export default function CreateIncident() {
           </View>
 
           {/* Description */}
-          <Text className="text-sm font-semibold text-gray-700 mb-2">Description *</Text>
+          <Text className="text-sm font-semibold text-gray-700 mb-2">
+            Description *
+          </Text>
           <TextInput
             value={description}
             onChangeText={setDescription}
