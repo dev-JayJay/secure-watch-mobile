@@ -8,15 +8,15 @@ type Severity = "High" | "Medium" | "Low";
 type IncidentCardProps = {
   type: IncidentType;
   location: string;
-  date: string; 
+  date: string;
   severity: Severity | any;
   onPress?: (event: GestureResponderEvent) => void;
 };
 
 const typeIcons: Record<IncidentType, JSX.Element> = {
-  Accident: <AlertCircle color="#dc2626" size={36} />, 
-  Flood: <Droplet color="#2563eb" size={36} />, 
-  "Power Outage": <Zap color="#f59e0b" size={36} />, 
+  Accident: <AlertCircle color="#dc2626" size={36} />,
+  Flood: <Droplet color="#2563eb" size={36} />,
+  "Power Outage": <Zap color="#f59e0b" size={36} />,
   Robbery: <ShieldAlert color="#6b7280" size={36} />,
 };
 
@@ -36,7 +36,7 @@ export default function IncidentCard({
   return (
     <Pressable
       onPress={onPress}
-      className="bg-[#F5F9F7] border border-gray-300 rounded-lg p-4 mb-4 flex-row items-center shadow-md"
+      className="bg-[#D5E6DC] border border-gray-300 rounded-lg p-4 mb-4 flex-row items-center shadow-md"
       android_ripple={{ color: "#ddd" }}
     >
       <View className="mr-4">

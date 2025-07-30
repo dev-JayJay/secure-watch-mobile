@@ -13,5 +13,5 @@
     "app/**/*",
     "types/**/*.d.ts",
     "nativewind-env.d.ts"
-  ]
+, "components/check.tsx"  ]
 }
