@@ -4,7 +4,7 @@ import CustomTabBar from "../../components/customTabBar";
 import { Home, AlertTriangle, User, Siren } from "lucide-react-native";
 
 const tabs = [
-  { name: "home", title: "Home", Icon: Home },
+  { name: "index", title: "Home", Icon: Home },
   { name: "incident", title: "Incident", Icon: AlertTriangle },
   { name: "sos", title: "Sos", Icon: Siren },
   { name: "profile", title: "Profile", Icon: User },
@@ -12,7 +12,7 @@ const tabs = [
 
 const HomeLayout = () => (
   <Tabs
-  tabBar={props => <CustomTabBar {...props}/>}
+    tabBar={(props) => <CustomTabBar {...props} />}
     screenOptions={({ route }) => {
       const tab = tabs.find((tab) => tab.name === route.name);
       return {

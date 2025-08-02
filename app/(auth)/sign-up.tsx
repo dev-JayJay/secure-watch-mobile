@@ -86,7 +86,7 @@ export default function SignUp() {
           </View>
 
           <TouchableOpacity
-            onPress={() => router.push(`/home`)}
+            onPress={() => router.push(`/(user)`)}
             className="bg-[#144E32] border border-[#B0B0B0B8] py-5 rounded-xl"
           >
             <Text className="text-white text-center text-xl font-semibold">
