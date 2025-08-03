@@ -8,7 +8,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
-type TabRouteName = "home" | "incident" | "sos" | "profile";
+type TabRouteName = "index" | "incident" | "sos" | "profile";
 
 const CustomTabBar: React.FC<BottomTabBarProps> = ({
   state,
@@ -16,7 +16,7 @@ const CustomTabBar: React.FC<BottomTabBarProps> = ({
   navigation,
 }) => {
   const icons: Record<TabRouteName, (props: any) => JSX.Element> = {
-    home: (props: any) => (
+    index: (props: any) => (
       <Entypo name="home" size={24} color="#144E32" {...props} />
     ),
     incident: (props: any) => (

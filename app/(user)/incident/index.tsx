@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ApplicationHeader from "../../components/header";
-import IncidentCard from "../../components/IncidentCard";
-import { incidents } from "../../constants/incidents";
+import ApplicationHeader from "../../../components/header";
+import IncidentCard from "../../../components/IncidentCard";
+import { incidents } from "../../../constants/incidents";
 import { useRouter } from "expo-router";
-import NewsContainer from "../../components/News";
+import NewsContainer from "../../../components/News";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Incidents() {
