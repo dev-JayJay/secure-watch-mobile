@@ -7,6 +7,7 @@ import {
   ScrollView,
   Alert,
   Platform,
+  Image,
 } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 import { useRouter } from "expo-router";
@@ -15,10 +16,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import * as ImagePicker from "expo-image-picker";
 
 const INCIDENT_TYPES = ["Fire", "Flood", "Accident", "Theft", "Other"];
 const SEVERITY_LEVELS = ["Low", "Medium", "High"];
-const PRIMARY_COLOR = "#144E32";
 
 export default function CreateIncident() {
   const router = useRouter();
@@ -29,19 +30,34 @@ export default function CreateIncident() {
   const [severity, setSeverity] = useState(SEVERITY_LEVELS[0]);
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [imageUri, setImageUri] = useState<string | null>(null);
 
   function onDateChange(event: DateTimePickerEvent, selectedDate?: Date) {
     setShowDatePicker(Platform.OS === "ios");
     if (selectedDate) setDate(selectedDate);
   }
 
+  async function pickImage() {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImageUri(result.assets[0].uri);
+    }
+  }
+
   function handleSubmit() {
     if (!title || !location || !description) {
-      Alert.alert("Please fill in all required fields.");
+      Alert.alert("Missing Fields", "Please fill in all required fields.");
       return;
     }
-    // TODO: Replace with actual submission logic (API etc.)
-    Alert.alert("Incident Reported", `Title: ${title}\nType: ${type}`);
+
+    Alert.alert("Incident Submitted", `Title: ${title}\nType: ${type}`);
+    // TODO: submit to server
   }
 
   return (
@@ -50,15 +66,11 @@ export default function CreateIncident() {
         <TouchableOpacity
           onPress={() => router.back()}
           className="mb-6 bg-[#144E32] p-3 mx-6 rounded-full w-12 h-12 items-center justify-center"
-          activeOpacity={0.7}
         >
-          <Text className="text-base text-white font-semibold">
-            <ArrowLeft color={"white"} />
-          </Text>
+          <ArrowLeft color="white" />
         </TouchableOpacity>
-        <ScrollView
-          contentContainerStyle={{ paddingLeft: 24, paddingRight: 24 }}
-        >
+
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
           <Text className="text-3xl font-extrabold text-[#144E32] mb-8">
             Report an Incident
           </Text>
@@ -70,7 +82,7 @@ export default function CreateIncident() {
           <TextInput
             value={title}
             onChangeText={setTitle}
-            placeholder="Enter incident title"
+            placeholder="Incident title"
             className="border border-gray-300 rounded-lg p-4 mb-6 bg-white shadow-sm"
             placeholderTextColor="#6b7280"
           />
@@ -82,12 +94,35 @@ export default function CreateIncident() {
           <TextInput
             value={location}
             onChangeText={setLocation}
-            placeholder="Enter location"
+            placeholder="e.g. Victoria Island, Lagos"
             className="border border-gray-300 rounded-lg p-4 mb-6 bg-white shadow-sm"
             placeholderTextColor="#6b7280"
           />
 
-          {/* Incident Type */}
+          {/* Image Upload */}
+          <Text className="text-sm font-semibold text-gray-700 mb-2">
+            Upload Photo
+          </Text>
+          <TouchableOpacity
+            onPress={pickImage}
+            className="bg-white border border-gray-300 rounded-lg p-4 mb-4 items-center justify-center"
+          >
+            <Text className="text-gray-700">Choose Image</Text>
+          </TouchableOpacity>
+          {imageUri && (
+            <Image
+              source={{ uri: imageUri }}
+              style={{
+                width: "100%",
+                height: 200,
+                borderRadius: 10,
+                marginBottom: 20,
+              }}
+              resizeMode="cover"
+            />
+          )}
+
+          {/* Type */}
           <Text className="text-sm font-semibold text-gray-700 mb-2">Type</Text>
           <View className="flex-row flex-wrap mb-6">
             {INCIDENT_TYPES.map((incidentType) => (
@@ -99,7 +134,6 @@ export default function CreateIncident() {
                     ? "bg-[#144E32] border-[#144E32]"
                     : "bg-white border-gray-300"
                 } shadow-sm`}
-                activeOpacity={0.8}
               >
                 <Text
                   className={`font-semibold ${
@@ -117,7 +151,6 @@ export default function CreateIncident() {
           <TouchableOpacity
             onPress={() => setShowDatePicker(true)}
             className="border border-gray-300 rounded-lg p-4 mb-6 bg-white shadow-sm"
-            activeOpacity={0.7}
           >
             <Text className="text-gray-700">{date.toDateString()}</Text>
           </TouchableOpacity>
@@ -145,7 +178,6 @@ export default function CreateIncident() {
                     ? "bg-[#144E32] border-[#0f3d26]"
                     : "bg-white border-gray-300"
                 }`}
-                activeOpacity={0.8}
               >
                 <Text
                   className={`text-center font-semibold ${
@@ -165,7 +197,7 @@ export default function CreateIncident() {
           <TextInput
             value={description}
             onChangeText={setDescription}
-            placeholder="Describe the incident"
+            placeholder="Provide detailed information"
             multiline
             numberOfLines={5}
             className="border border-gray-300 rounded-lg p-4 mb-8 bg-white shadow-sm text-base"
@@ -173,13 +205,12 @@ export default function CreateIncident() {
             textAlignVertical="top"
           />
 
-          {/* Submit Button */}
+          {/* Submit */}
           <TouchableOpacity
             onPress={handleSubmit}
-            className="bg-[#144E32] rounded-lg py-4 shadow-lg"
-            activeOpacity={0.85}
+            className="bg-[#144E32] rounded-lg py-4 shadow-lg mb-10"
           >
-            <Text className="text-white text-center font-extrabold text-lg tracking-wide">
+            <Text className="text-white text-center font-extrabold text-lg">
               Submit Report
             </Text>
           </TouchableOpacity>
